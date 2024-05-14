@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualización de Datos JSON con Bootstrap</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Visualización de Datos JSON</h1>
+    <div id="jsonTable" class="table-responsive"></div>
+</div>
+
+<!-- Bootstrap JS y jQuery (requerido para Bootstrap) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    // Definición del JSON
+    const jsonData = [
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,DAM,M,22,4,5,3,2,1"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,DAW,F,20,3,4,4,3,2"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,ASIR,M,23,5,5,5,4,5"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,SMR,F,21,2,3,4,4,3"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,DAM,M,24,4,4,3,3,4"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,DAW,F,22,5,4,5,3,3"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,ASIR,M,20,3,3,2,4,4"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,SMR,F,25,4,5,5,5,5"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,DAM,M,21,4,3,4,4,4"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,DAW,F,23,5,4,3,2,1"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,ASIR,M,22,3,5,4,4,3"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,SMR,F,20,4,4,5,3,2"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,DAM,M,24,5,5,4,4,5"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,DAW,F,21,3,3,4,5,4"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,ASIR,M,25,4,4,3,3,4"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,SMR,F,22,5,4,5,3,3"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,DAM,M,20,3,5,4,4,3"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,DAW,F,24,4,4,3,3,4"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,ASIR,M,21,5,4,5,3,3"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,SMR,F,23,3,3,2,4,4"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,DAM,M,22,4,5,3,2,1"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,DAW,F,20,3,4,4,3,2"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,ASIR,M,23,5,5,5,4,5"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,SMR,F,21,2,3,4,4,3"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,DAM,M,24,4,4,3,3,4"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,DAW,M,22,4,5,3,2,1"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,ASIR,F,20,3,4,4,3,2"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,SMR,M,23,5,5,5,4,5"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,DAM,F,21,2,3,4,4,3"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,DAW,M,24,4,4,3,3,4"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,ASIR,F,22,5,4,5,3,3"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,SMR,M,20,3,3,2,4,4"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,DAM,F,25,4,5,5,5,5"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,DAW,M,21,4,3,4,4,4"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,ASIR,F,23,5,4,3,2,1"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,SMR,M,22,3,5,4,4,3"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,DAM,F,20,4,4,3,2,1"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,DAW,M,24,5,5,4,4,5"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,ASIR,F,21,3,3,4,4,3"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,SMR,M,25,4,4,3,2,1"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,DAM,F,22,5,4,5,3,3"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,DAW,M,20,2,3,4,4,3"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,ASIR,F,23,3,4,5,3,2"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,SMR,M,21,4,5,4,2,1"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,DAM,F,24,5,4,3,4,3"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,DAW,M,22,3,3,2,5,4"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,ASIR,F,20,4,4,5,4,3"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,SMR,M,23,5,4,5,3,2"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,DAM,F,25,3,4,3,4,5"
+    },
+    {
+        "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,DAW,M,21,4,5,4,3,2"
+    }
+    ];
+
+    // Función para mostrar los datos en una tabla
+    function mostrarDatos() {
+        const tableDiv = document.getElementById('jsonTable');
+        const table = document.createElement('table');
+        table.className = 'table table-striped';
+    
+        // Crea la cabecera de la tabla
+        const headers = ['Centro', 'Grado', 'Sexo', 'Edad', 'Pregunta_1', 'Pregunta_2', 'Pregunta_3', 'Pregunta_4', 'Pregunta_5'];
+        const thead = document.createElement('thead');
+        const headerRow = document.createElement('tr');
+        headers.forEach(headerText => {
+            const th = document.createElement('th');
+            th.textContent = headerText;
+            headerRow.appendChild(th);
+        });
+        thead.appendChild(headerRow);
+        table.appendChild(thead);
+    
+        // Crea el cuerpo de la tabla
+        const tbody = document.createElement('tbody');
+        jsonData.forEach(obj => {
+            const row = document.createElement('tr');
+            const values = obj['Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5'].split(',');
+            values.forEach((value, index) => {
+                const cell = document.createElement('td');
+                cell.textContent = value.trim();
+                row.appendChild(cell);
+            });
+            tbody.appendChild(row);
+        });
+        table.appendChild(tbody);
+    
+        // Agrega la tabla al div
+        tableDiv.appendChild(table);
+    }
+    
+    // Llama a la función para mostrar los datos
+    mostrarDatos();
+</script>
+<button onclick="window.location.href = 'index2.html';">Ir a grafico de centros</button>
+<button onclick="window.location.href = 'index.html';">Ir a grafico de preguntas</button>
+<button onclick="window.location.href = 'index3.html';">Ir a grafico de sexos y edades</button>
+</body>
+</html>

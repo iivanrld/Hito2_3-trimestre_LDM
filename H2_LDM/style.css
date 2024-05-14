@@ -1,0 +1,28 @@
+
+    body {
+        background-color: linear-gradient(#ff0000,#ffae00,#fbff00);
+    }
+
+    table {
+        background-color: #f0c400;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #ffee07;
+        font-weight: bold;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f5a623;
+    }
+
+
+
